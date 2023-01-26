@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Form } from "react-router-dom";
+
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
@@ -27,7 +27,7 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
@@ -49,8 +49,7 @@ const SignInForm = () => {
   };
 
   const SignInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   return (
